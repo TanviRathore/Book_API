@@ -2,6 +2,9 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
 
+//initiallizing express
+const ourApp = express();
+
 // importing API
 const Book = require("./API/book");
 const Author = require("./API/author");
@@ -20,21 +23,18 @@ mongoose
         console.log(err);
     });
 
-    //initiallizing express
-    const ourApp = express();
-
     // every data we send or retrieve is in json format, therefore specifying that we are using JSON
     ourApp.use(express.json());
 
     // Microservices
-    ourApp.use("/book",Book);
-    ourApp.use("/author",Author);
-    ourApp.use("/publication",Publication);
+    ourApp.use("/book", Book);
+    ourApp.use("/author", Author);
+    ourApp.use("/publication", Publication);
 
-    OurAPP.get("/", (request, response) => {
+    ourApp.get("/", (request, response) => {
         response.json({ message: "Server is working!!!!!!" });
     });
     
     // listening to server
-    OurAPP.listen(4000, () => console.log("Server is running"));
+    ourApp.listen(4000, () => console.log("Server is running"));
 
