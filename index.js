@@ -1,5 +1,5 @@
 require("dotenv").config();
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const express = require("express");
 
 //initiallizing express
@@ -11,13 +11,7 @@ const Author = require("./API/author");
 const Publication = require("./API/publication");
 
 // connecting mongoose
-mongoose
-    .connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-        useCreateIndex: true,
-    })
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("connection extablished!"))
     .catch((err) => {
         console.log(err);
